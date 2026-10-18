@@ -11,6 +11,13 @@ import { err } from '../services/errors.ts';
 
 export type Who = { name: string; key: string };
 
+/** Client IP for rate limits: the edge proxy's header if configured (Cloudflare), else Fastify's req.ip. */
+export function clientIp(req: FastifyRequest, header: string): string {
+  const v = header ? req.headers[header] : undefined;
+  const ip = (Array.isArray(v) ? v[0] : v)?.split(',')[0]?.trim();
+  return ip || req.ip;
+}
+
 export const bodyOf = (req: FastifyRequest): Record<string, unknown> =>
   req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? (req.body as Record<string, unknown>) : {};
 

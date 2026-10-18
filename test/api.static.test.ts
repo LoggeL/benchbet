@@ -130,6 +130,23 @@ test('Rate-Limit: POST /api/tips 10/min → 429 mit Retry-After; neues Fenster n
   }
 });
 
+test('Rate-Limit: CLIENT_IP_HEADER trennt Clients hinter demselben Proxy', async () => {
+  const t = await makeApp({ config: { rateLimit: true, clientIpHeader: 'cf-connecting-ip' } });
+  try {
+    const g = await t.createGame();
+    for (let i = 0; i < 10; i++) {
+      const r = await t.post('/api/tips', { name: `Spieler${i}`, gameId: g.id, values: [i] }, { 'x-device-id': `device-cf-${i}-0000`, 'cf-connecting-ip': '203.0.113.1' });
+      assert.equal(r.status, 201, r.text);
+    }
+    const sameIp = await t.post('/api/tips', { name: 'Spieler10', gameId: g.id, values: [10] }, { 'x-device-id': 'device-cf-10-0000', 'cf-connecting-ip': '203.0.113.1' });
+    assert.equal(sameIp.status, 429);
+    const otherIp = await t.post('/api/tips', { name: 'Spieler11', gameId: g.id, values: [11] }, { 'x-device-id': 'device-cf-11-0000', 'cf-connecting-ip': '203.0.113.2' });
+    assert.equal(otherIp.status, 201, otherIp.text);
+  } finally {
+    await t.close();
+  }
+});
+
 test('Body-Limit 64 KB → 413, kaputtes JSON → 400', async () => {
   const t = await makeApp();
   try {

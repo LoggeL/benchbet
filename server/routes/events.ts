@@ -3,17 +3,17 @@ import type { FastifyInstance } from 'fastify';
 import type { Ctx } from '../app.ts';
 import { iso } from '../clock.ts';
 import { err } from '../services/errors.ts';
-import { optionalName, queryOf, securityHeaders } from './util.ts';
+import { clientIp, optionalName, queryOf, securityHeaders } from './util.ts';
 
 /** Gleichzeitige SSE-Verbindungen pro IP (sonst kann ein Client alle 200 Plätze belegen). */
-export const SSE_MAX_PER_IP = 12;
+export const SSE_MAX_PER_IP = 30;
 
 export function eventRoutes(app: FastifyInstance, ctx: Ctx): void {
   const perIp = new Map<string, number>();
   app.get('/api/events', async (req, reply) => {
     optionalName(queryOf(req).name);
     if (ctx.sse.isFull()) throw err.unavailable();
-    const ip = req.ip;
+    const ip = clientIp(req, ctx.config.clientIpHeader);
     if (ctx.config.rateLimit && (perIp.get(ip) ?? 0) >= SSE_MAX_PER_IP) throw err.rateLimited(30);
     const now = ctx.clock.now();
     reply.hijack();

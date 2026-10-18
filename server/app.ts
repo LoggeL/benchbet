@@ -27,7 +27,7 @@ import { pushRoutes } from './routes/push.ts';
 import { eventRoutes } from './routes/events.ts';
 import { adminRoutes, hasValidAdminToken } from './routes/admin.ts';
 import { staticRoutes } from './routes/static.ts';
-import { securityHeaders } from './routes/util.ts';
+import { clientIp, securityHeaders } from './routes/util.ts';
 
 export const BODY_LIMIT = 64 * 1024;
 
@@ -93,7 +93,7 @@ export async function buildApp(o: BuildOptions): Promise<App> {
     const cat = categoryOf(req.method, path);
     if (!cat) return;
     if (path.startsWith('/api/admin/') && hasValidAdminToken(ctx, req)) return;
-    const retry = rateLimiter.hit(cat, req.ip);
+    const retry = rateLimiter.hit(cat, clientIp(req, config.clientIpHeader));
     if (retry !== null) throw err.rateLimited(retry);
   });
 

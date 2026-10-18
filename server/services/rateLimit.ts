@@ -3,7 +3,7 @@ import type { Clock } from '../clock.ts';
 
 export type RateCategory = 'write' | 'tip' | 'read' | 'sse';
 
-export const RATE_LIMITS: Record<RateCategory, number> = { write: 30, tip: 10, read: 300, sse: 10 };
+export const RATE_LIMITS: Record<RateCategory, number> = { write: 30, tip: 10, read: 300, sse: 30 };
 const WINDOW_MS = 60_000;
 
 export type RateLimiter = ReturnType<typeof createRateLimiter>;

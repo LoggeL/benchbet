@@ -32,6 +32,8 @@ export type Config = {
   pushHosts: string[];
   /** Fastify trustProxy: Anzahl vertrauter Proxy-Hops (Default 1 = Traefik), true/false oder IP/CIDR-Liste. */
   trustProxy: boolean | number | string;
+  /** Header with the real client IP set by an edge proxy (e.g. `cf-connecting-ip` behind Cloudflare); empty = req.ip. */
+  clientIpHeader: string;
   /** In-Memory-Rate-Limit an/aus (Tests schalten es meist aus). */
   rateLimit: boolean;
   /** Wartezeit vor dem einen Retry bei 429/5xx/Netzfehler (§5.4). */
@@ -142,6 +144,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
     version: `${packageVersion()}+${gitSha.slice(0, 7)}`,
     staticDir: str(env.STATIC_DIR, '') ? resolve(str(env.STATIC_DIR, '')) : resolve(ROOT, 'dist/client'),
     trustProxy: trustProxy(env.TRUST_PROXY),
+    clientIpHeader: str(env.CLIENT_IP_HEADER, '').toLowerCase(),
     pushHosts: str(env.PUSH_ENDPOINT_HOSTS, '') ? str(env.PUSH_ENDPOINT_HOSTS, '').split(',').map((h) => h.trim().toLowerCase()).filter(Boolean) : DEFAULT_PUSH_HOSTS,
     rateLimit: bool(env.RATE_LIMIT, true, 'RATE_LIMIT'),
     pushRetryMs: 60_000,
