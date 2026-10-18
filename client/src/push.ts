@@ -11,6 +11,8 @@ export type PushStatus = 'unsupported' | 'ios-needs-install' | 'no-name' | 'off'
 export type PushApi = {
   status: PushStatus;
   prefs: PushPrefs | null;
+  /** Why the last "turn on" failed on this device (shown next to the button), else null. */
+  error: string | null;
   enable(): Promise<void>;
   disable(): Promise<void>;
   setPrefs(p: Partial<PushPrefs>): Promise<void>;
@@ -21,6 +23,9 @@ export const PUSH_TEXT = {
   on: 'Push is on.',
   off: 'Push is off.',
   failed: 'Couldn’t turn on push. Try again later under Me.',
+  failedShort: 'Couldn’t turn on push.',
+  service: 'Your browser’s push service didn’t answer. Check your connection and try again.',
+  brave: 'Brave blocks push by default. Open brave://settings/privacy, turn on “Use Google services for push messaging”, restart Brave and try again.',
   testSent: 'Test push is on its way.',
   renewed: 'Push had gone stale on this device – reconnected. Test push is on its way.',
   installAsk: 'BenchBet as an app?',
@@ -43,13 +48,14 @@ const supported =
 // State
 // ---------------------------------------------------------------------------
 
-type PS = { subscribed: boolean; permission: NotificationPermission | 'n/a'; prefs: PushPrefs | null; name: string | null };
+type PS = { subscribed: boolean; permission: NotificationPermission | 'n/a'; prefs: PushPrefs | null; name: string | null; error: string | null };
 let ps: PS = {
   // Optimistic until sync() has checked the real subscription (avoids a flashing PushCard)
   subscribed: supported && Notification.permission === 'granted' && lsGet(KEY_STATE) === 'on',
   permission: supported ? Notification.permission : 'n/a',
   prefs: lsJson<PushPrefs | null>(KEY_PREFS, null),
   name: st.getName(),
+  error: null,
 };
 let snapshot: PushApi;
 const subs = new Set<() => void>();
@@ -69,7 +75,7 @@ function statusOf(s: PS): PushStatus {
 }
 
 function build(): PushApi {
-  return { status: statusOf(ps), prefs: ps.prefs, enable, disable, setPrefs, sendTest };
+  return { status: statusOf(ps), prefs: ps.prefs, error: ps.error, enable, disable, setPrefs, sendTest };
 }
 snapshot = build();
 
@@ -192,14 +198,25 @@ async function enable(): Promise<void> {
     if (!sub) throw new Error('no subscription');
     const prefs = await upsert(sub, ps.prefs ?? undefined);
     lsSet(KEY_STATE, 'on');
-    setPS({ subscribed: true, prefs });
+    setPS({ subscribed: true, prefs, error: null });
     st.toast(PUSH_TEXT.on);
     offerInstallOnce();
   } catch (e) {
-    st.toast(e instanceof ApiError && e.code !== 'NETWORK' ? errText(e) : PUSH_TEXT.failed, { error: true });
+    const msg = enableError(e);
+    setPS({ error: msg });
+    st.toast(PUSH_TEXT.failedShort, { error: true }); // the reason stays next to the button (start dialog, Me, push card)
   } finally {
     busy = false;
   }
+}
+
+/** pushManager.subscribe() fails with AbortError when the browser can't reach its push service – Brave by default. */
+function enableError(e: unknown): string {
+  if (e instanceof ApiError && e.code !== 'NETWORK') return errText(e);
+  if (e instanceof DOMException && e.name === 'AbortError') {
+    return 'brave' in navigator ? PUSH_TEXT.brave : PUSH_TEXT.service;
+  }
+  return PUSH_TEXT.failed;
 }
 
 /** Once, after a successful opt-in: "BenchBet as an app? [Install]" (§4.5). */

@@ -66,7 +66,7 @@
 .banner.t-hi { background: var(--accent-soft); border-color: var(--accent-edge); }
 
 .toast-zone {
-  position: fixed; left: 50%; bottom: calc(var(--bb) + 12px); transform: translateX(-50%); z-index: 60;
+  position: fixed; left: 50%; bottom: calc(var(--bb) + 12px); transform: translateX(-50%); z-index: 75; /* above the start dialog (70) */
   width: min(560px, calc(100% - 24px)); pointer-events: none; display: flex; justify-content: center;
 }
 .toast-zone.fs { bottom: calc(env(safe-area-inset-bottom, 0px) + 108px); }

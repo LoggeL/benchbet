@@ -19,6 +19,7 @@ const T = {
   pushText: 'Get a ping when a new bet drops, a result is in or a deadline is close.',
   pushOn: 'Turn on push',
   pushBusy: 'Asking your browser …',
+  retry: 'Try again',
   notNow: 'Not now',
   meHint: 'You can change this anytime under Me.',
   iosText: 'On iPhone, push only works once BenchBet is on your home screen. Add it, open it from there, and you’re set.',
@@ -94,8 +95,9 @@ export function Onboarding() {
           <>
             <h1 id="ob-t" className="h1">{T.hi(name!)}</h1>
             <p className="ob-p">{T.pushText}</p>
+            {push.error && !busy && <p className="ob-err" role="alert">{push.error}</p>}
             <button type="button" className="btn btn-primary" onClick={() => void enable()} disabled={busy} aria-busy={busy}>
-              <Icon n="bell" size={20} />{busy ? T.pushBusy : T.pushOn}
+              <Icon n="bell" size={20} />{busy ? T.pushBusy : push.error ? T.retry : T.pushOn}
             </button>
             <button type="button" className="btn btn-ghost" onClick={notNow} disabled={busy}>{T.notNow}</button>
             <p className="ob-hint">{T.meHint}</p>

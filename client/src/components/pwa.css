@@ -35,3 +35,8 @@
 .ob-skip { justify-self: center; min-height: 44px; color: var(--ink-2); }
 .ob-hint { margin: -8px 0 0; text-align: center; font-size: 14px; color: var(--ink-3, var(--ink-2)); }
 .welcome-in .btn-ghost { justify-self: center; }
+.ob-err, .pset-err {
+  margin: 0; padding: 12px 14px; border-radius: 12px; font-size: 15px; line-height: 1.45;
+  background: color-mix(in srgb, var(--danger) 12%, transparent); box-shadow: inset 3px 0 0 var(--danger);
+  overflow-wrap: anywhere;
+}

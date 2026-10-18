@@ -79,7 +79,7 @@ test.beforeAll(async ({ request }) => {
 
 /** Tests other than the onboarding ones skip the start dialog like a visitor tapping "Just look around". */
 test.beforeEach(async ({ context }, info) => {
-  if (/^1b? · /.test(info.title)) return;
+  if (/^1[bc]? · /.test(info.title)) return;
   await context.addInitScript(() => {
     try {
       sessionStorage.setItem('benchbet.onboardSkip', '1');
@@ -187,6 +187,25 @@ test('1b · start dialog asks a known player for push right away', async ({ page
   await expect(page.locator('#main')).toBeVisible();
   await page.waitForTimeout(500);
   await expect(page.getByRole('dialog')).toHaveCount(0);
+});
+
+test('1c · start dialog: push service refuses (Brave default) → reason + fix shown, retry possible', async ({ page, context, browserName }) => {
+  test.skip(browserName !== 'chromium', 'Web push opt-in only in Chromium here.');
+  await context.addInitScript(() => {
+    localStorage.setItem('benchbet.name', 'Nöl');
+    Object.defineProperty(navigator, 'brave', { configurable: true, value: { isBrave: async () => true } });
+    PushManager.prototype.subscribe = async function () { throw new DOMException('Registration failed - push service error', 'AbortError'); };
+    PushManager.prototype.getSubscription = async function () { return null; };
+  });
+  await freshNotificationPermission(context);
+  await page.goto('/');
+  const pushStep = page.getByRole('dialog', { name: 'Hi Nöl!' });
+  await swControlled(page);
+  await pushStep.getByRole('button', { name: 'Turn on push' }).click();
+  await expect(pushStep.getByRole('alert')).toContainText('brave://settings/privacy');
+  await expect(page.getByText('Couldn’t turn on push.')).toBeVisible(); // toast sits above the dialog
+  await expect(pushStep.getByRole('button', { name: 'Try again' })).toBeEnabled();
+  await expect(pushStep).toBeVisible();
 });
 
 test('2 · undo: panel comes back with the same value', async ({ page, context }) => {

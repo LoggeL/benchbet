@@ -52,7 +52,10 @@ export function PushSettings(_props: Record<string, never>) {
       <div className="pset">
         <p className="pset-st">{T[p.status]}</p>
         {p.status === 'off' && (
-          <button type="button" className="btn btn-primary" disabled={busy} onClick={run(p.enable)}>{T.enable}</button>
+          <>
+            {p.error && !busy && <p className="pset-err" role="alert">{p.error}</p>}
+            <button type="button" className="btn btn-primary" disabled={busy} onClick={run(p.enable)}>{T.enable}</button>
+          </>
         )}
         {p.status === 'blocked' && (
           <ul>{BLOCKED_HELP.map(([k, v]) => <li key={k}><b>{k}:</b> {v}</li>)}</ul>

@@ -66,6 +66,7 @@ export function PushCard({ variant }: { variant: PushCardVariant }) {
         <Icon n="bell" />
         <p>{T[variant]}</p>
       </div>
+      {p.error && <p className="pset-err" role="alert">{p.error}</p>}
       <div className="pcard-a">
         <button type="button" className="btn btn-primary" onClick={on}><Icon n="bell" size={18} />{T.on}</button>
         {variant !== 'iosInstalled' && (
