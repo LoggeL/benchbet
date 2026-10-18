@@ -1,0 +1,31 @@
+/* PWA/Push-Bausteine: PushCard, InstallCard, InstallSheet, PushSettings (SPEC §4.5, §4.6, §5.6). */
+.pcard { display: grid; gap: 12px; padding: 16px; margin-top: 16px; background: var(--accent-soft); border: 1px solid var(--accent-edge); border-radius: var(--radius); }
+.pcard-t { display: flex; gap: 10px; align-items: flex-start; font-weight: 650; font-size: 15.5px; line-height: 1.35; }
+.pcard-t .ic { flex: none; margin-top: 1px; color: var(--accent-ink); }
+.pcard-t p { flex: 1; }
+.pcard-a { display: flex; gap: 8px; flex-wrap: wrap; }
+.pcard-a .btn-primary { width: auto; flex: 1 1 auto; min-height: 48px; }
+.pcard.ic-card { background: var(--surface); border-color: var(--line); }
+.pcard .x { margin: -8px -8px 0 0; color: var(--ink-2); }
+.pline { display: flex; align-items: center; gap: 8px; margin: 4px 0 12px; font-size: 14.5px; color: var(--ink-2); }
+.pline .ic { color: var(--accent-ink); }
+.pline .link-btn { min-height: 44px; }
+.pempty { margin-top: 4px; }
+.isteps { display: grid; gap: 14px; margin: 4px 0; padding: 0; list-style: none; counter-reset: s; }
+.isteps li { display: grid; grid-template-columns: 52px 1fr; gap: 12px; align-items: center; font-size: 15px; line-height: 1.4; }
+.isteps svg { width: 52px; height: 52px; border-radius: 12px; background: var(--surface-2); }
+.isteps .pg-s { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.isteps .pg-a { fill: var(--accent); }
+.isteps .pg-v { fill: var(--result); }
+.isteps .pg-d { fill: #101211; }
+.pset { display: grid; gap: 12px; }
+.pset-st { font-weight: 650; }
+.pset-st.on { color: var(--accent-ink); }
+.pset-l { display: grid; gap: 2px; padding-top: 4px; border-top: 1px solid var(--line); }
+.pset-l .switch { font-size: 15px; min-height: 44px; align-items: flex-start; padding: 11px 0 9px; line-height: 1.35; }
+.pset-l .switch input { flex: none; margin-top: 0; }
+.pset-h { margin-left: 28px; }
+.pset-h .seg-ctl button { min-height: 36px; padding: 0 10px; }
+.pset ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: 14px; }
+.pset .btn { justify-self: start; }
+.pset .btn-primary { width: auto; min-height: 48px; }

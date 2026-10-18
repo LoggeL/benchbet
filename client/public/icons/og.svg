@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#101211"/>
+  <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800">
+    <text x="130" y="340" font-size="150" fill="#f3f5ee" textLength="458" lengthAdjust="spacingAndGlyphs">Bench</text>
+    <path d="M662 184h40L642 384h-40z" fill="#c1a5fb"/>
+    <rect x="708" y="202" width="300" height="172" rx="28" fill="#d8fc70"/>
+    <text x="736" y="340" font-size="150" fill="#151814" textLength="244" lengthAdjust="spacingAndGlyphs">Bet</text>
+    <circle cx="1046" cy="356" r="22" fill="#c1a5fb"/>
+  </g>
+  <text x="600" y="462" text-anchor="middle" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="36" font-weight="500" fill="#adb5a8">Bets on AI models, benchmarks and the next big release.</text>
+</svg>

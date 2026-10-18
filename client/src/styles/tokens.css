@@ -1,0 +1,74 @@
+/* Design-Tokens (SPEC §1.10). Hell = Default, Dunkel per System oder data-theme. */
+:root {
+  color-scheme: light dark;
+  --bg: #f6f7f2;
+  --surface: #ffffff;
+  --surface-2: #eef0e8;
+  --ink: #151814;
+  --ink-2: #5b6357;
+  --line: #d7dbcf;
+  --accent: #d8fc70;
+  --on-accent: #152000;
+  --accent-ink: #4a6a00;
+  --result: #6a4fc2;
+  --warn: #9a5b00;
+  --closed: #5f6759; /* ≥ 4.5:1 auf --surface-2 (Pill „Closed“) */
+  --danger: #b3261e;
+  --focus: #4a6a00;
+  --radius: 14px;
+  --r-in: 10px;
+
+  /* abgeleitet */
+  --accent-edge: #9cc232;
+  --accent-soft: #eff9d2;
+  --result-soft: #eeeafa;
+  --result-line: #c9bdf0;
+  --warn-soft: #fbf0dc;
+  --danger-soft: #fbe6e3;
+  --on-danger: #ffffff;
+  --live: #23a455;
+  --toast-bg: #151814;
+  --toast-ink: #f3f5ee;
+  --toast-act: #d8fc70;
+  --scrim: rgb(16 18 17 / 0.42);
+  --shadow: 0 1px 2px rgb(21 24 20 / 0.05), 0 6px 20px rgb(21 24 20 / 0.07);
+  --shadow-up: 0 -1px 0 var(--line), 0 -8px 24px rgb(21 24 20 / 0.06);
+
+  /* Spielerfarben (fester Index 0..7) */
+  --p0: #1f6fb2; --p1: #c2410c; --p2: #a16207; --p3: #be185d;
+  --p4: #0f766e; --p5: #4f46e5; --p6: #b45309; --p7: #15803d;
+  --on-p: #ffffff;
+
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --hdr: 52px;
+  --bb: calc(64px + env(safe-area-inset-bottom, 0px));
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101211; --surface: #1b1e1b; --surface-2: #232722; --ink: #f3f5ee; --ink-2: #adb5a8; --line: #394036;
+    --accent-ink: #d8fc70; --result: #c1a5fb; --warn: #ffc56b; --closed: #929e83; --danger: #ffab9c; --focus: #d8fc70;
+    --accent-edge: #d8fc70; --accent-soft: rgb(216 252 112 / 0.1); --result-soft: rgb(193 165 251 / 0.12);
+    --result-line: rgb(193 165 251 / 0.4); --warn-soft: rgb(255 197 107 / 0.12); --danger-soft: rgb(255 171 156 / 0.12);
+    --on-danger: #2a0702; --live: #6ee38d; --toast-bg: #f3f5ee; --toast-ink: #151814; --toast-act: #4a6a00;
+    --scrim: rgb(0 0 0 / 0.6); --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.3);
+    --shadow-up: 0 -1px 0 var(--line), 0 -8px 24px rgb(0 0 0 / 0.35);
+    --p0: #6cc4ff; --p1: #ff8a65; --p2: #ffc94d; --p3: #ff7ab8; --p4: #4fd1b5; --p5: #8c9eff; --p6: #ffa24c; --p7: #9be29b;
+    --on-p: #101211;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101211; --surface: #1b1e1b; --surface-2: #232722; --ink: #f3f5ee; --ink-2: #adb5a8; --line: #394036;
+  --accent-ink: #d8fc70; --result: #c1a5fb; --warn: #ffc56b; --closed: #929e83; --danger: #ffab9c; --focus: #d8fc70;
+  --accent-edge: #d8fc70; --accent-soft: rgb(216 252 112 / 0.1); --result-soft: rgb(193 165 251 / 0.12);
+  --result-line: rgb(193 165 251 / 0.4); --warn-soft: rgb(255 197 107 / 0.12); --danger-soft: rgb(255 171 156 / 0.12);
+  --on-danger: #2a0702; --live: #6ee38d; --toast-bg: #f3f5ee; --toast-ink: #151814; --toast-act: #4a6a00;
+  --scrim: rgb(0 0 0 / 0.6); --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.3);
+  --shadow-up: 0 -1px 0 var(--line), 0 -8px 24px rgb(0 0 0 / 0.35);
+  --p0: #6cc4ff; --p1: #ff8a65; --p2: #ffc94d; --p3: #ff7ab8; --p4: #4fd1b5; --p5: #8c9eff; --p6: #ffa24c; --p7: #9be29b;
+  --on-p: #101211;
+}
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }

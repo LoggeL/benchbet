@@ -1,0 +1,49 @@
+{
+  "name": "benchbet",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BenchBet – a betting game for friends on AI models, benchmarks and the next big release.",
+  "license": "MIT",
+  "author": "LoggeL",
+  "homepage": "https://bet.logge.top",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoggeL/benchbet.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:server": "node --watch --env-file-if-exists=.env --disable-warning=ExperimentalWarning server/index.ts",
+    "dev:client": "vite --config client/vite.config.ts",
+    "build": "npm run typecheck && npm run build:client && npm run build:sw && npm run size",
+    "build:client": "vite build --config client/vite.config.ts",
+    "build:sw": "vite build --config client/vite.sw.config.ts",
+    "start": "node --disable-warning=ExperimentalWarning server/index.ts",
+    "typecheck": "tsc -p tsconfig.server.json && tsc -p tsconfig.client.json && tsc -p tsconfig.sw.json",
+    "test": "node scripts/check-public.mjs && node --test --disable-warning=ExperimentalWarning \"test/**/*.test.ts\"",
+    "e2e": "playwright test",
+    "icons": "node scripts/gen-icons.mjs",
+    "vapid": "node scripts/gen-vapid.mjs",
+    "import:legacy": "node scripts/import-legacy.mjs",
+    "size": "node scripts/size.mjs"
+  },
+  "dependencies": {
+    "@fastify/static": "10.1.6",
+    "fastify": "5.12.7",
+    "web-push": "3.6.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "@resvg/resvg-js": "2.6.2",
+    "@types/node": "24.19.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/web-push": "3.6.4",
+    "preact": "10.29.8",
+    "typescript": "5.9.3",
+    "vite": "7.3.7"
+  }
+}

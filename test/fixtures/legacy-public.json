@@ -1,0 +1,889 @@
+{
+  "games": [
+    {
+      "id": 1062,
+      "prompt": "Kimi K3.1 – AA Index",
+      "description": "Tippe den Artificial Analysis Intelligence Index für Kimi K3.1 von Moonshot AI. Diese Runde ist eine Vorhersage für die angefragte Modellversion; eine Veröffentlichung wird damit nicht als bestätigt vorausgesetzt.\n\nEs zählt der erste von Artificial Analysis selbst veröffentlichte Intelligence-Index-Wert für genau diese Modellversion, auf der höchsten bei dieser ersten Bewertung getesteten Reasoning-Stufe. Maßgeblich ist die dabei verwendete Indexversion. Geschätzte Werte, Leaks, andere Teilindizes und Vorgängermodelle zählen nicht. Ohne passende AA-Bewertung bleibt die Runde offen; spätere Neuberechnungen ändern das Ergebnis nicht.",
+      "infoUrl": "https://artificialanalysis.ai/leaderboards/models",
+      "benchmark": "Artificial Analysis Intelligence Index",
+      "answerType": "number",
+      "fields": [
+        {
+          "label": "Score",
+          "unit": "Punkte",
+          "min": 0,
+          "max": 100,
+          "step": 0.1
+        }
+      ],
+      "phase": "open",
+      "createdBy": "Logge",
+      "createdAt": "2026-10-17 11:40:57",
+      "resolvedAt": null,
+      "closesAt": null,
+      "archiveAt": null,
+      "canManage": false,
+      "result": null,
+      "tipCount": 3,
+      "hasTipped": false,
+      "answersRevealed": false,
+      "viewerTip": null,
+      "tips": [
+        {
+          "id": 61,
+          "playerName": "Logge",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        },
+        {
+          "id": 64,
+          "playerName": "Nöl",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        },
+        {
+          "id": 66,
+          "playerName": "Nikjay",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        }
+      ]
+    },
+    {
+      "id": 1061,
+      "prompt": "GLM 5.5 – AA Index",
+      "description": "Tippe den Artificial Analysis Intelligence Index für GLM 5.5 von Z.ai. Diese Runde ist eine Vorhersage für die angefragte Modellversion; eine Veröffentlichung wird damit nicht als bestätigt vorausgesetzt.\n\nEs zählt der erste von Artificial Analysis selbst veröffentlichte Intelligence-Index-Wert für genau diese Modellversion, auf der höchsten bei dieser ersten Bewertung getesteten Reasoning-Stufe. Maßgeblich ist die dabei verwendete Indexversion. Geschätzte Werte, Leaks, andere Teilindizes und Vorgängermodelle zählen nicht. Ohne passende AA-Bewertung bleibt die Runde offen; spätere Neuberechnungen ändern das Ergebnis nicht.",
+      "infoUrl": "https://artificialanalysis.ai/leaderboards/models",
+      "benchmark": "Artificial Analysis Intelligence Index",
+      "answerType": "number",
+      "fields": [
+        {
+          "label": "Score",
+          "unit": "Punkte",
+          "min": 0,
+          "max": 100,
+          "step": 0.1
+        }
+      ],
+      "phase": "open",
+      "createdBy": "Logge",
+      "createdAt": "2026-10-17 11:40:52",
+      "resolvedAt": null,
+      "closesAt": null,
+      "archiveAt": null,
+      "canManage": false,
+      "result": null,
+      "tipCount": 3,
+      "hasTipped": false,
+      "answersRevealed": false,
+      "viewerTip": null,
+      "tips": [
+        {
+          "id": 62,
+          "playerName": "Nöl",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        },
+        {
+          "id": 63,
+          "playerName": "Logge",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        },
+        {
+          "id": 67,
+          "playerName": "Nikjay",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        }
+      ]
+    },
+    {
+      "id": 1060,
+      "prompt": "DeepSeek V4.1 Flash 1017 – AA Index",
+      "description": "Tippe den Artificial Analysis Intelligence Index für DeepSeek-V4.1-Flash-1017, das Update vom 17.10.2026. Die Runde bezieht sich ausdrücklich auf den neuen 1017-Snapshot. Veröffentlichung: https://api-docs.deepseek.com/updates/\n\nEs zählt der erste von Artificial Analysis selbst veröffentlichte Intelligence-Index-Wert für genau diese Modellversion, auf der höchsten bei dieser ersten Bewertung getesteten Reasoning-Stufe. Maßgeblich ist die dabei verwendete Indexversion. Geschätzte Werte, Leaks, andere Teilindizes und Vorgängermodelle zählen nicht. Ohne passende AA-Bewertung bleibt die Runde offen; spätere Neuberechnungen ändern das Ergebnis nicht.",
+      "infoUrl": "https://artificialanalysis.ai/models/creators/deepseek",
+      "benchmark": "Artificial Analysis Intelligence Index",
+      "answerType": "number",
+      "fields": [
+        {
+          "label": "Score",
+          "unit": "Punkte",
+          "min": 0,
+          "max": 100,
+          "step": 0.1
+        }
+      ],
+      "phase": "open",
+      "createdBy": "Logge",
+      "createdAt": "2026-10-17 11:40:48",
+      "resolvedAt": null,
+      "closesAt": null,
+      "archiveAt": null,
+      "canManage": false,
+      "result": null,
+      "tipCount": 3,
+      "hasTipped": false,
+      "answersRevealed": false,
+      "viewerTip": null,
+      "tips": [
+        {
+          "id": 60,
+          "playerName": "Logge",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        },
+        {
+          "id": 65,
+          "playerName": "Nöl",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        },
+        {
+          "id": 68,
+          "playerName": "Nikjay",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        }
+      ]
+    },
+    {
+      "id": 1059,
+      "prompt": "Le Chaton Fat AA Index",
+      "description": "Gemeint ist Mistral Large 4 Preview. Diese Runde wurde am 06.10.2026 mit 38 Punkten im Artificial Analysis Intelligence Index aufgelöst. AA bestätigt diesen Score auf der verlinkten Modellseite. Es handelt sich um die Research Public Preview.",
+      "infoUrl": "https://artificialanalysis.ai/models/mistral-large-4",
+      "benchmark": "Artificial Analysis",
+      "answerType": "number",
+      "fields": [
+        {
+          "label": "Score",
+          "unit": "Punkte",
+          "min": 0,
+          "max": 100,
+          "step": 0.1
+        }
+      ],
+      "phase": "archived",
+      "createdBy": "Logge",
+      "createdAt": "2026-10-06 13:25:28",
+      "resolvedAt": "2026-10-06 13:34:27",
+      "closesAt": null,
+      "archiveAt": "2026-10-13T13:34:27.000Z",
+      "canManage": false,
+      "result": [
+        38
+      ],
+      "tipCount": 3,
+      "hasTipped": false,
+      "answersRevealed": true,
+      "viewerTip": null,
+      "tips": [
+        {
+          "id": 56,
+          "playerName": "LZH",
+          "isOwn": false,
+          "values": [
+            35
+          ],
+          "distance": 3,
+          "rank": 1,
+          "isWinner": true
+        },
+        {
+          "id": 57,
+          "playerName": "Nöl",
+          "isOwn": false,
+          "values": [
+            45
+          ],
+          "distance": 7,
+          "rank": 2,
+          "isWinner": false
+        },
+        {
+          "id": 54,
+          "playerName": "Logge",
+          "isOwn": false,
+          "values": [
+            47
+          ],
+          "distance": 9,
+          "rank": 3,
+          "isWinner": false
+        }
+      ]
+    },
+    {
+      "id": 1058,
+      "prompt": "GPT-6.1-Luna AA Index",
+      "description": "Gesucht ist der Artificial Analysis Intelligence Index von GPT-6.1 Luna (0–100 Punkte). Stand 07.10.2026 wurde in der geprüften AA-Übersicht kein Ergebnis für diese Modellversion gefunden. GPT-6.1 Sol und GPT-6 Luna sind andere Einträge.",
+      "infoUrl": "https://artificialanalysis.ai/models/creators/openai",
+      "benchmark": "Artificial Analysis",
+      "answerType": "number",
+      "fields": [
+        {
+          "label": "Score",
+          "unit": "Punkte",
+          "min": 0,
+          "max": 100,
+          "step": 0.1
+        }
+      ],
+      "phase": "open",
+      "createdBy": "Logge",
+      "createdAt": "2026-10-04 20:11:47",
+      "resolvedAt": null,
+      "closesAt": null,
+      "archiveAt": null,
+      "canManage": false,
+      "result": null,
+      "tipCount": 3,
+      "hasTipped": false,
+      "answersRevealed": false,
+      "viewerTip": null,
+      "tips": [
+        {
+          "id": 51,
+          "playerName": "Logge",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        },
+        {
+          "id": 53,
+          "playerName": "Nöl",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        },
+        {
+          "id": 55,
+          "playerName": "LZH",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        }
+      ]
+    },
+    {
+      "id": 1057,
+      "prompt": "What's your p(doom)?",
+      "description": "p(doom) bedeutet deine persönliche Einschätzung der Wahrscheinlichkeit einer existenziellen Katastrophe durch KI. Eingabe von 0 bis 1: 0 = 0 %, 0,1 = 10 %, 0,5 = 50 %, 1 = 100 %. Bisher sind weder ein Zeithorizont noch ein objektiv auswertbarer Auflösungszeitpunkt angegeben.",
+      "infoUrl": null,
+      "benchmark": "p(doom)",
+      "answerType": "number",
+      "fields": [
+        {
+          "label": "Score",
+          "unit": "Punkte",
+          "min": 0,
+          "max": 1,
+          "step": 0.001
+        }
+      ],
+      "phase": "open",
+      "createdBy": "Logge",
+      "createdAt": "2026-10-04 14:51:23",
+      "resolvedAt": null,
+      "closesAt": null,
+      "archiveAt": null,
+      "canManage": false,
+      "result": null,
+      "tipCount": 2,
+      "hasTipped": false,
+      "answersRevealed": false,
+      "viewerTip": null,
+      "tips": [
+        {
+          "id": 50,
+          "playerName": "Logge",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        },
+        {
+          "id": 52,
+          "playerName": "LZH",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        }
+      ]
+    },
+    {
+      "id": 1056,
+      "prompt": "Fable 55 - AA Score",
+      "description": "Gemeint ist Claude Fable 5.5. Gesucht ist der Artificial Analysis Intelligence Index (0–100 Punkte). Stand 07.10.2026 wurde in der geprüften AA-Übersicht kein Ergebnis für Fable 5.5 gefunden; dort ist Fable 5.1 gelistet.",
+      "infoUrl": "https://artificialanalysis.ai/models/creators/anthropic",
+      "benchmark": "Artificial Analysis",
+      "answerType": "number",
+      "fields": [
+        {
+          "label": "Score",
+          "unit": "Punkte",
+          "min": 0,
+          "max": 100,
+          "step": 0.1
+        }
+      ],
+      "phase": "open",
+      "createdBy": "Logge",
+      "createdAt": "2026-10-04 12:44:23",
+      "resolvedAt": null,
+      "closesAt": null,
+      "archiveAt": null,
+      "canManage": false,
+      "result": null,
+      "tipCount": 4,
+      "hasTipped": false,
+      "answersRevealed": false,
+      "viewerTip": null,
+      "tips": [
+        {
+          "id": 45,
+          "playerName": "Logge",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        },
+        {
+          "id": 47,
+          "playerName": "Nöl",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        },
+        {
+          "id": 48,
+          "playerName": "Nikjay",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        },
+        {
+          "id": 58,
+          "playerName": "LZH",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        }
+      ]
+    },
+    {
+      "id": 1055,
+      "prompt": "Haiku 55 - AA Score",
+      "description": "Claude Haiku 5.5: Aufgelöst am 07.10.2026 mit 43 Punkten im AA Intelligence Index v4.3.2 (Max, Default Fallback).",
+      "infoUrl": "https://artificialanalysis.ai/models/claude-haiku-5-5",
+      "benchmark": "Artificial Analysis",
+      "answerType": "number",
+      "fields": [
+        {
+          "label": "Score",
+          "unit": "Punkte",
+          "min": 0,
+          "max": 100,
+          "step": 0.1
+        }
+      ],
+      "phase": "archived",
+      "createdBy": "Logge",
+      "createdAt": "2026-10-04 12:43:59",
+      "resolvedAt": "2026-10-07 19:39:54",
+      "closesAt": null,
+      "archiveAt": "2026-10-14T19:39:54.000Z",
+      "canManage": false,
+      "result": [
+        43
+      ],
+      "tipCount": 4,
+      "hasTipped": false,
+      "answersRevealed": true,
+      "viewerTip": null,
+      "tips": [
+        {
+          "id": 46,
+          "playerName": "Nöl",
+          "isOwn": false,
+          "values": [
+            40
+          ],
+          "distance": 3,
+          "rank": 1,
+          "isWinner": true
+        },
+        {
+          "id": 49,
+          "playerName": "Nikjay",
+          "isOwn": false,
+          "values": [
+            38
+          ],
+          "distance": 5,
+          "rank": 2,
+          "isWinner": false
+        },
+        {
+          "id": 59,
+          "playerName": "LZH",
+          "isOwn": false,
+          "values": [
+            48
+          ],
+          "distance": 5,
+          "rank": 2,
+          "isWinner": false
+        },
+        {
+          "id": 44,
+          "playerName": "Logge",
+          "isOwn": false,
+          "values": [
+            50
+          ],
+          "distance": 7,
+          "rank": 4,
+          "isWinner": false
+        }
+      ]
+    },
+    {
+      "id": 1054,
+      "prompt": "OpenAI ProMax Sub Cost",
+      "description": "Gesucht war der Abopreis von OpenAI ProMax in US-Dollar. In dieser Runde wurden am 25.09.2026 500 USD als Ergebnis gespeichert. Der bisher verlinkte X-Beitrag ist die ursprüngliche Quellenangabe der Runde; sein Inhalt konnte bei dieser Ergänzung nicht unabhängig geprüft werden.",
+      "infoUrl": "https://x.com/btibor91/status/2103222629171908937/photo/1",
+      "benchmark": "Pricing",
+      "answerType": "number",
+      "fields": [
+        {
+          "label": "Wert",
+          "unit": "$",
+          "min": 0,
+          "max": 10000,
+          "step": 0.1
+        }
+      ],
+      "phase": "archived",
+      "createdBy": "Logge",
+      "createdAt": "2026-09-24 20:49:59",
+      "resolvedAt": "2026-09-25 12:48:16",
+      "closesAt": null,
+      "archiveAt": "2026-10-02T12:48:16.000Z",
+      "canManage": false,
+      "result": [
+        500
+      ],
+      "tipCount": 4,
+      "hasTipped": false,
+      "answersRevealed": true,
+      "viewerTip": null,
+      "tips": [
+        {
+          "id": 40,
+          "playerName": "Logge",
+          "isOwn": false,
+          "values": [
+            500
+          ],
+          "distance": 0,
+          "rank": 1,
+          "isWinner": true
+        },
+        {
+          "id": 43,
+          "playerName": "Nikjay",
+          "isOwn": false,
+          "values": [
+            500
+          ],
+          "distance": 0,
+          "rank": 1,
+          "isWinner": true
+        },
+        {
+          "id": 42,
+          "playerName": "LZH",
+          "isOwn": false,
+          "values": [
+            300
+          ],
+          "distance": 200,
+          "rank": 3,
+          "isWinner": false
+        },
+        {
+          "id": 41,
+          "playerName": "Nöl",
+          "isOwn": false,
+          "values": [
+            1000
+          ],
+          "distance": 500,
+          "rank": 4,
+          "isWinner": false
+        }
+      ]
+    },
+    {
+      "id": 747,
+      "prompt": "GPT-6-Luna Cost",
+      "description": "Gesucht waren die API-Kosten für GPT-6 Luna in US-Dollar je 1 Million Tokens, in der Reihenfolge Input / Output. Gespeichertes Ergebnis vom 22.09.2026: 0,10 USD Input / 0,50 USD Output. Die verlinkte AA-Seite bestätigt diese Preise.",
+      "infoUrl": "https://artificialanalysis.ai/models/gpt-6-luna",
+      "benchmark": "Cost",
+      "answerType": "text",
+      "fields": [],
+      "phase": "archived",
+      "createdBy": "Logge",
+      "createdAt": "2026-09-16 12:59:31",
+      "resolvedAt": "2026-09-22 18:26:13",
+      "closesAt": null,
+      "archiveAt": "2026-09-29T18:26:13.000Z",
+      "canManage": false,
+      "result": "0.1 / 0.5",
+      "tipCount": 3,
+      "hasTipped": false,
+      "answersRevealed": true,
+      "viewerTip": null,
+      "tips": [
+        {
+          "id": 36,
+          "playerName": "Logge",
+          "isOwn": false,
+          "values": "0.30 in / 1.80 out",
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        },
+        {
+          "id": 37,
+          "playerName": "Nöl",
+          "isOwn": false,
+          "values": "gleich wie 5.6 luna",
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        },
+        {
+          "id": 39,
+          "playerName": "LZH",
+          "isOwn": false,
+          "values": "5/1",
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        }
+      ]
+    },
+    {
+      "id": 629,
+      "prompt": "GPT-6-Luna AA Index",
+      "description": "Gesucht war der Artificial Analysis Intelligence Index für GPT-6 Luna (0–100 Punkte). In dieser Runde wurden am 22.09.2026 37 Punkte als Ergebnis gespeichert. Die aktuelle AA-Modellseite zeigt am 07.10.2026 für GPT-6 Luna (Max) 38 Punkte; der genaue Grund der Abweichung ist aus den bisherigen Spielangaben nicht ersichtlich. Das gespeicherte Ergebnis bleibt der historische Stand dieser Runde.",
+      "infoUrl": "https://artificialanalysis.ai/models/gpt-6-luna",
+      "benchmark": "GPT-6-Luna AA Index",
+      "answerType": "number",
+      "fields": [
+        {
+          "label": "Wert",
+          "unit": "Punkte",
+          "min": 0,
+          "max": 100,
+          "step": 0.1
+        }
+      ],
+      "phase": "archived",
+      "createdBy": "Logge",
+      "createdAt": "2026-09-15 21:06:36",
+      "resolvedAt": "2026-09-22 18:26:41",
+      "closesAt": null,
+      "archiveAt": "2026-09-29T18:26:41.000Z",
+      "canManage": false,
+      "result": [
+        37
+      ],
+      "tipCount": 3,
+      "hasTipped": false,
+      "answersRevealed": true,
+      "viewerTip": null,
+      "tips": [
+        {
+          "id": 32,
+          "playerName": "Logge",
+          "isOwn": false,
+          "values": [
+            39
+          ],
+          "distance": 2,
+          "rank": 1,
+          "isWinner": true
+        },
+        {
+          "id": 38,
+          "playerName": "LZH",
+          "isOwn": false,
+          "values": [
+            42
+          ],
+          "distance": 5,
+          "rank": 2,
+          "isWinner": false
+        },
+        {
+          "id": 33,
+          "playerName": "Nöl",
+          "isOwn": false,
+          "values": [
+            45
+          ],
+          "distance": 8,
+          "rank": 3,
+          "isWinner": false
+        }
+      ]
+    },
+    {
+      "id": 502,
+      "prompt": "Wie hoch wird der AA Index von GPT-6-Sol?",
+      "description": "Gesucht war der Artificial Analysis Intelligence Index für GPT-6 Sol, in Punkten auf einer Skala von 0 bis 100. Gespeichertes Ergebnis der Auflösung vom 22.09.2026: 48 Punkte. Die verlinkte AA-Modellseite zeigt GPT-6 Sol mit Reasoning-Stufe Max.",
+      "infoUrl": "https://artificialanalysis.ai/models/gpt-6-sol",
+      "benchmark": "Artificial Analysis",
+      "answerType": "number",
+      "fields": [
+        {
+          "label": "Wert",
+          "unit": "Punkte",
+          "min": 0,
+          "max": 100,
+          "step": 0.1
+        }
+      ],
+      "phase": "archived",
+      "createdBy": "Logge",
+      "createdAt": "2026-09-15 16:00:52",
+      "resolvedAt": "2026-09-22 18:26:34",
+      "closesAt": null,
+      "archiveAt": "2026-09-29T18:26:34.000Z",
+      "canManage": false,
+      "result": [
+        48
+      ],
+      "tipCount": 3,
+      "hasTipped": false,
+      "answersRevealed": true,
+      "viewerTip": null,
+      "tips": [
+        {
+          "id": 28,
+          "playerName": "Logge",
+          "isOwn": false,
+          "values": [
+            52
+          ],
+          "distance": 4,
+          "rank": 1,
+          "isWinner": true
+        },
+        {
+          "id": 30,
+          "playerName": "LZH",
+          "isOwn": false,
+          "values": [
+            52
+          ],
+          "distance": 4,
+          "rank": 1,
+          "isWinner": true
+        },
+        {
+          "id": 34,
+          "playerName": "Nöl",
+          "isOwn": false,
+          "values": [
+            56
+          ],
+          "distance": 8,
+          "rank": 3,
+          "isWinner": false
+        }
+      ]
+    },
+    {
+      "id": 492,
+      "prompt": "Wie hoch wird der AA Index von Opus 5.2",
+      "description": "Gesucht war der Artificial Analysis Intelligence Index, in Punkten auf einer Skala von 0 bis 100. Diese unter dem Namen Opus 5.2 angelegte Runde wurde am 22.09.2026 mit 57,6 Punkten aufgelöst. Die genaue Modellzuordnung und Reasoning-Stufe sind in den bisherigen Spielangaben nicht dokumentiert. Die AA-Übersicht ist als Recherchequelle verlinkt, nicht als nachträglicher Beleg für die ursprüngliche Zuordnung.",
+      "infoUrl": "https://artificialanalysis.ai/models/creators/anthropic",
+      "benchmark": "Artificial Analysis",
+      "answerType": "number",
+      "fields": [
+        {
+          "label": "Wert",
+          "unit": "Punkte",
+          "min": 0,
+          "max": 100,
+          "step": 0.1
+        }
+      ],
+      "phase": "archived",
+      "createdBy": "Logge",
+      "createdAt": "2026-09-15 16:00:13",
+      "resolvedAt": "2026-09-22 16:44:34",
+      "closesAt": null,
+      "archiveAt": "2026-09-29T16:44:34.000Z",
+      "canManage": false,
+      "result": [
+        57.6
+      ],
+      "tipCount": 3,
+      "hasTipped": false,
+      "answersRevealed": true,
+      "viewerTip": null,
+      "tips": [
+        {
+          "id": 35,
+          "playerName": "Nöl",
+          "isOwn": false,
+          "values": [
+            55
+          ],
+          "distance": 2.6,
+          "rank": 1,
+          "isWinner": true
+        },
+        {
+          "id": 27,
+          "playerName": "Logge",
+          "isOwn": false,
+          "values": [
+            54
+          ],
+          "distance": 3.6,
+          "rank": 2,
+          "isWinner": false
+        },
+        {
+          "id": 31,
+          "playerName": "LZH",
+          "isOwn": false,
+          "values": [
+            52
+          ],
+          "distance": 5.6,
+          "rank": 3,
+          "isWinner": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Welches Modell steckt hinter Omen Alpha?",
+      "description": "Rate, welches echte Modell hinter dem anonym veröffentlichten Omen Alpha steckt. OpenCode führt einen Eintrag unter unknown/omen-alpha; eine konkrete Modellzuordnung wird hier nicht als bestätigt angenommen.",
+      "infoUrl": "https://opencode.ai/de/data/unknown/omen-alpha",
+      "benchmark": "OpenCode Go",
+      "answerType": "text",
+      "fields": [],
+      "phase": "open",
+      "createdBy": "Logge",
+      "createdAt": "2026-09-04 09:34:24",
+      "resolvedAt": null,
+      "closesAt": null,
+      "archiveAt": null,
+      "canManage": false,
+      "result": null,
+      "tipCount": 5,
+      "hasTipped": false,
+      "answersRevealed": false,
+      "viewerTip": null,
+      "tips": [
+        {
+          "id": 2,
+          "playerName": "Logge",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        },
+        {
+          "id": 4,
+          "playerName": "Nikjay",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        },
+        {
+          "id": 5,
+          "playerName": "LZH",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        },
+        {
+          "id": 8,
+          "playerName": "Nöl",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        },
+        {
+          "id": 29,
+          "playerName": "BigDick69",
+          "isOwn": false,
+          "values": null,
+          "distance": null,
+          "rank": null,
+          "isWinner": false
+        }
+      ]
+    }
+  ],
+  "serverTime": "2026-10-18T15:07:40.869Z"
+}

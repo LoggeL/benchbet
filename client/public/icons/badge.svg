@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <mask id="b">
+    <rect width="512" height="512" fill="#fff"/>
+    <path d="M290 172v144M290 172h50a36 36 0 0 1 0 72h-50M290 244h58a36 36 0 0 1 0 72h-58" fill="none" stroke="#000" stroke-width="34" stroke-linecap="square"/>
+  </mask>
+  <rect x="236" y="120" width="188" height="248" rx="40" fill="#fff" mask="url(#b)"/>
+  <path d="M200 88h60L148 424h-60z" fill="#fff"/>
+  <circle cx="404" cy="414" r="30" fill="#fff"/>
+</svg>

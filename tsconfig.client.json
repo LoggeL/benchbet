@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": ["es2023", "dom", "dom.iterable"],
+    "types": ["vite/client"]
+  },
+  "include": ["client/src/**/*.ts", "client/src/**/*.tsx", "shared/**/*.ts"],
+  "exclude": ["client/src/sw/**"]
+}

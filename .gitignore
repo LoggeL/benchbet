@@ -1,0 +1,15 @@
+node_modules/
+dist/
+data/
+legacy/
+docs/internal/
+docs/audit/
+*.db
+*.db-*
+*snapshot*.json
+!test/fixtures/*.json
+.env
+.env.*
+!.env.example
+test-results/
+playwright-report/

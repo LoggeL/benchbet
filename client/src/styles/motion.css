@@ -1,0 +1,30 @@
+/* Bewegung: 150–250 ms ease-out. Ausnahmen: Siegel-Flip, Reveal, Konfetti. Alles hinter prefers-reduced-motion. */
+@keyframes fade { from { opacity: 0; } }
+@keyframes slide-up { from { transform: translateY(40px); opacity: 0.4; } }
+@keyframes toast-in { from { transform: translateY(12px); opacity: 0; } }
+@keyframes drain { to { transform: scaleX(0); } }
+@keyframes flip { from { transform: rotateY(0); } to { transform: rotateY(180deg); } }
+@keyframes pop { 0% { transform: scale(0); } 70% { transform: scale(1.25); } 100% { transform: scale(1); } }
+@keyframes grow-x { from { transform: scaleX(0); } }
+@keyframes shimmer { to { transform: translateX(100%); } }
+@keyframes ping { 0% { transform: scale(0.6); opacity: 0.8; } 100% { transform: scale(1.8); opacity: 0; } }
+@keyframes blink { 50% { opacity: 0.35; } }
+@keyframes lime-pulse {
+  0% { box-shadow: 0 0 0 0 var(--accent), var(--shadow); background-color: var(--accent-soft); }
+  100% { box-shadow: 0 0 0 10px transparent, var(--shadow); }
+}
+@keyframes ring { 0% { box-shadow: 0 0 0 0 var(--accent); } 100% { box-shadow: 0 0 0 12px transparent; } }
+@keyframes rise { from { transform: translateY(8px); opacity: 0; } }
+
+.fresh { animation: lime-pulse 600ms ease-out, rise 300ms var(--ease); }
+.pulse { animation: ring 1s ease-out infinite; background: var(--accent-soft); }
+.main > * { animation: fade 160ms ease-out; }
+.confetti { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 80; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important; scroll-behavior: auto !important;
+  }
+  .fade-in { animation: fade 150ms ease-out !important; }
+}

@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": ["webworker", "es2023"],
+    "types": []
+  },
+  "include": ["client/src/sw/**/*.ts", "shared/**/*.ts"]
+}
