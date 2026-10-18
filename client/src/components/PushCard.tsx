@@ -27,7 +27,7 @@ function laterBlocked(): boolean {
   const l = lsJson<Later | null>(LATER_KEY, null);
   return !!l && (l.count >= 2 || Date.now() < l.until);
 }
-function later(): void {
+export function snoozePushCards(): void {
   const l = lsJson<Later | null>(LATER_KEY, null);
   lsSetJson(LATER_KEY, { until: Date.now() + LATER_MS, count: (l?.count ?? 0) + 1 });
 }
@@ -69,7 +69,7 @@ export function PushCard({ variant }: { variant: PushCardVariant }) {
       <div className="pcard-a">
         <button type="button" className="btn btn-primary" onClick={on}><Icon n="bell" size={18} />{T.on}</button>
         {variant !== 'iosInstalled' && (
-          <button type="button" className="btn btn-ghost" onClick={() => { later(); setGone(true); }}>{T.later}</button>
+          <button type="button" className="btn btn-ghost" onClick={() => { snoozePushCards(); setGone(true); }}>{T.later}</button>
         )}
       </div>
     </section>

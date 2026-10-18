@@ -403,6 +403,4 @@ export const C = {
     welcomeText: ' Place your guess, then see what everyone else thinks.',
   },
 
-  iosWelcome: 'Welcome to the app! Who are you?',
-  iosGo: 'Let’s go',
 } as const;

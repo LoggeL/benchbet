@@ -39,6 +39,7 @@ async function asPlayer(context: BrowserContext, name: string | null): Promise<v
   await context.addInitScript((n) => {
     try {
       if (n) localStorage.setItem('benchbet.name', n);
+      localStorage.setItem('benchbet.onboarded', '1'); // start dialog has its own tests (1, 1b)
     } catch {
       /* ignore */
     }
@@ -76,17 +77,71 @@ test.beforeAll(async ({ request }) => {
   await resetData(request);
 });
 
+/** Tests other than the onboarding ones skip the start dialog like a visitor tapping "Just look around". */
+test.beforeEach(async ({ context }, info) => {
+  if (/^1b? · /.test(info.title)) return;
+  await context.addInitScript(() => {
+    try {
+      sessionStorage.setItem('benchbet.onboardSkip', '1');
+    } catch {
+      /* ignore */
+    }
+  });
+});
+
+/** Fake PushManager subscription + intercepted /api/push/subscribe (headless browsers can't reach a real push service reliably). */
+async function stubPush(context: BrowserContext, page: Page): Promise<() => { name?: string; subscription?: { endpoint?: string; keys?: unknown } } | null> {
+  await context.addInitScript(() => {
+    const b64 = (n: number) => btoa(String.fromCharCode(...Array.from({ length: n }, (_, i) => (i * 37 + 11) & 255)))
+      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    let sub: PushSubscription | null = null;
+    const make = (): PushSubscription => {
+      const endpoint = 'https://push.example.invalid/e2e-fake-endpoint';
+      const keys = { p256dh: b64(65), auth: b64(16) };
+      return {
+        endpoint, expirationTime: null, options: { userVisibleOnly: true, applicationServerKey: null },
+        getKey: () => null, toJSON: () => ({ endpoint, expirationTime: null, keys }),
+        unsubscribe: async () => { sub = null; return true; },
+      } as unknown as PushSubscription;
+    };
+    PushManager.prototype.subscribe = async function () { return (sub ??= make()); };
+    PushManager.prototype.getSubscription = async function () { return sub; };
+  });
+  let body: { name?: string; subscription?: { endpoint?: string; keys?: unknown } } | null = null;
+  await page.route('**/api/push/subscribe', async (route) => {
+    body = route.request().postDataJSON();
+    await route.fulfill({
+      status: 201, contentType: 'application/json',
+      body: JSON.stringify({ subscriptionId: 1, prefs: { newGame: true, result: true, reminder: true, reminderHours: 2, creator: true } }),
+    });
+  });
+  return () => body;
+}
+
 test('1 · first visit & guess: stepper, new name, undo window, reveal, opt-in card', async ({ page, context, browserName }) => {
   await freshNotificationPermission(context);
   await page.goto(`/bet/${OPEN_BET}`);
+  // start dialog: name first …
+  const dialog = page.getByRole('dialog', { name: 'Welcome to BenchBet' });
+  await expect(dialog).toBeVisible();
+  await dialog.getByRole('button', { name: '+ New' }).click();
+  await dialog.getByRole('textbox', { name: 'Your name' }).fill('Testi');
+  await dialog.getByRole('button', { name: 'That’s me' }).click();
+  // … then push (iPhone Safari: home-screen how-to instead)
+  const pushStep = page.getByRole('dialog', { name: 'Hi Testi!' });
+  await expect(pushStep).toBeVisible();
+  if (browserName === 'webkit') {
+    await expect(pushStep.getByText(/On iPhone, push only works once BenchBet is on your home screen/)).toBeVisible();
+    await pushStep.getByRole('button', { name: 'Continue in the browser' }).click();
+  } else {
+    await expect(pushStep.getByRole('button', { name: 'Turn on push' })).toBeVisible();
+    await pushStep.getByRole('button', { name: 'Not now' }).click();
+  }
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Kimi K3.1');
-  await expect(lockInButton(page)).toHaveCount(0);
   await page.getByRole('button', { name: 'Plus 0.1' }).click();
   await expect(page.getByRole('button', { name: /^Type a number: 50(\.0)? points$/ })).toBeVisible();
-
-  await page.getByRole('button', { name: '+ New' }).click();
-  await page.getByRole('textbox', { name: 'Your name' }).fill('Testi');
-  await page.getByRole('button', { name: 'That’s me' }).click();
 
   const lock = lockInButton(page);
   await expect(lock).toHaveText('Lock in 50.0 points');
@@ -101,11 +156,37 @@ test('1 · first visit & guess: stepper, new name, undo window, reveal, opt-in c
   await expect(page.getByLabel(/^Logge’s guess: /)).toBeVisible();
   await expect(page.getByLabel(/hidden$/)).toHaveCount(0);
 
+  // "Not now" a minute ago → no second push ask right after the first guess
+  await expect(page.getByText('Want a ping when a new bet drops or a result is in?')).toHaveCount(0);
+  await expect(page.getByText('On iPhone, push only works once BenchBet is on your home screen.')).toHaveCount(0);
+  // and the start dialog doesn't come back
+  await page.reload();
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Kimi K3.1');
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+});
+
+test('1b · start dialog asks a known player for push right away', async ({ page, context, browserName }) => {
+  await context.addInitScript(() => localStorage.setItem('benchbet.name', 'Nöl'));
+  await freshNotificationPermission(context);
+  const body = browserName === 'chromium' ? await stubPush(context, page) : () => null;
+  await page.goto('/');
+  const pushStep = page.getByRole('dialog', { name: 'Hi Nöl!' });
+  await expect(pushStep).toBeVisible();
   if (browserName === 'webkit') {
-    await expect(page.getByText('On iPhone, push only works once BenchBet is on your home screen.')).toBeVisible();
-  } else {
-    await expect(page.getByText('Want a ping when a new bet drops or a result is in?')).toBeVisible();
+    await pushStep.getByRole('button', { name: 'Show me how' }).click();
+    await expect(page.getByRole('dialog', { name: /home screen/i })).toBeVisible();
+    return;
   }
+  await swControlled(page);
+  const req = page.waitForRequest((r) => r.url().endsWith('/api/push/subscribe') && r.method() === 'POST');
+  await pushStep.getByRole('button', { name: 'Turn on push' }).click();
+  await req;
+  await expect(page.getByRole('dialog', { name: 'Hi Nöl!' })).toHaveCount(0);
+  expect(body()!.name).toBe('Nöl');
+  await page.reload();
+  await expect(page.locator('#main')).toBeVisible();
+  await page.waitForTimeout(500);
+  await expect(page.getByRole('dialog')).toHaveCount(0);
 });
 
 test('2 · undo: panel comes back with the same value', async ({ page, context }) => {
@@ -327,30 +408,7 @@ test('10 · push UI (Chromium): stubbed permission + subscription → "Push is o
   test.skip(browserName !== 'chromium', 'Push opt-in is only offered in Chromium (iOS Safari needs the home screen).');
   await asPlayer(context, 'Logge');
   await freshNotificationPermission(context);
-  await context.addInitScript(() => {
-    const b64 = (n: number) => btoa(String.fromCharCode(...Array.from({ length: n }, (_, i) => (i * 37 + 11) & 255)))
-      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-    let sub: PushSubscription | null = null;
-    const make = (): PushSubscription => {
-      const endpoint = 'https://push.example.invalid/e2e-fake-endpoint';
-      const keys = { p256dh: b64(65), auth: b64(16) };
-      return {
-        endpoint, expirationTime: null, options: { userVisibleOnly: true, applicationServerKey: null },
-        getKey: () => null, toJSON: () => ({ endpoint, expirationTime: null, keys }),
-        unsubscribe: async () => { sub = null; return true; },
-      } as unknown as PushSubscription;
-    };
-    PushManager.prototype.subscribe = async function () { return (sub ??= make()); };
-    PushManager.prototype.getSubscription = async function () { return sub; };
-  });
-  let body: { name?: string; subscription?: { endpoint?: string; keys?: unknown } } | null = null;
-  await page.route('**/api/push/subscribe', async (route) => {
-    body = route.request().postDataJSON();
-    await route.fulfill({
-      status: 201, contentType: 'application/json',
-      body: JSON.stringify({ subscriptionId: 1, prefs: { newGame: true, result: true, reminder: true, reminderHours: 2, creator: true } }),
-    });
-  });
+  const body = await stubPush(context, page);
   await page.goto('/me');
   await swControlled(page);
   await expect(page.getByText('Push is off.')).toBeVisible();
@@ -358,7 +416,7 @@ test('10 · push UI (Chromium): stubbed permission + subscription → "Push is o
   await page.getByRole('button', { name: 'Push on', exact: true }).click();
   await req;
   await expect(page.getByText('Push is on for this device ✓')).toBeVisible();
-  expect(body!.name).toBe('Logge');
-  expect(body!.subscription?.endpoint).toBe('https://push.example.invalid/e2e-fake-endpoint');
-  expect(body!.subscription?.keys).toBeTruthy();
+  expect(body()!.name).toBe('Logge');
+  expect(body()!.subscription?.endpoint).toBe('https://push.example.invalid/e2e-fake-endpoint');
+  expect(body()!.subscription?.keys).toBeTruthy();
 });

@@ -1,8 +1,7 @@
 // Shell: Skip-Link, Kopfzeile (Wortmarke, Live-Punkt, Namens-Chip), Banner, Inhalt, Bottom-Bar, Toast.
-import { useState, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { C } from '../copy.ts';
 import * as st from '../store.ts';
-import { useInstall } from '../pwa.ts';
 import { BannerZone } from './Banner.tsx';
 import { BottomBar } from './BottomBar.tsx';
 import { Icon } from './Icon.tsx';
@@ -10,7 +9,7 @@ import { Link } from './Link.tsx';
 import { LiveDot } from './LiveDot.tsx';
 import { NameChip } from './NameChip.tsx';
 import { NamePicker } from './NamePicker.tsx';
-import { PushCard } from './PushCard.tsx';
+import { Onboarding } from './Onboarding.tsx';
 import { Sheet } from './Sheet.tsx';
 import { Toast } from './Toast.tsx';
 import { WordmarkSvg } from './Wordmark.tsx';
@@ -20,35 +19,6 @@ function Wordmark() {
     <Link to="/" className="brand" aria-label={C.brand}>
       <WordmarkSvg />
     </Link>
-  );
-}
-
-/** Erststart der installierten iOS-App ohne Namen: Vollbild „Welcome to the app! Who are you?“ → danach PushCard. */
-function IosWelcome() {
-  const inst = useInstall();
-  const name = st.useName();
-  const [active] = useState(() => inst.isIOS && inst.isStandalone && !st.getName());
-  const [done, setDone] = useState(false);
-  if (!active || done) return null;
-  const step = name ? 'push' : 'name';
-  return (
-    <div className="welcome" role="dialog" aria-modal="true" aria-labelledby="w-t">
-      <div className="welcome-in">
-        <span className="brand big"><WordmarkSvg /></span>
-        {step === 'name' ? (
-          <>
-            <h1 id="w-t" className="h1">{C.iosWelcome}</h1>
-            <NamePicker />
-          </>
-        ) : (
-          <>
-            <h1 id="w-t" className="h1">{name}</h1>
-            <PushCard variant="iosInstalled" />
-            <button type="button" className="btn btn-primary" onClick={() => setDone(true)}>{C.iosGo}</button>
-          </>
-        )}
-      </div>
-    </div>
   );
 }
 
@@ -78,7 +48,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <NamePicker onDone={() => st.set({ namePicker: false })} />
         </div>
       </Sheet>
-      <IosWelcome />
+      <Onboarding />
     </>
   );
 }

@@ -29,3 +29,9 @@
 .pset ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: 14px; }
 .pset .btn { justify-self: start; }
 .pset .btn-primary { width: auto; min-height: 48px; }
+/* Start dialog (Onboarding) */
+.welcome-in .h1 { font-size: 28px; margin: 0; }
+.ob-p { margin: -8px 0 0; color: var(--ink-2); font-size: 17px; line-height: 1.45; }
+.ob-skip { justify-self: center; min-height: 44px; color: var(--ink-2); }
+.ob-hint { margin: -8px 0 0; text-align: center; font-size: 14px; color: var(--ink-3, var(--ink-2)); }
+.welcome-in .btn-ghost { justify-self: center; }
