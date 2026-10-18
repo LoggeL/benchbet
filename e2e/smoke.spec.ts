@@ -284,6 +284,12 @@ test('8 · PWA: manifest, SW control, offline shell with locked writes', async (
   // other routes still get the shell
   await page.goto('/leaderboard');
   await expect(page.locator('.lrow').first()).toBeVisible();
+  // document requests that aren't real navigations (installability check, prefetch) also get the shell, not a network error
+  const doc = await page.evaluate(async () => {
+    const r = await fetch('/me', { headers: { accept: 'text/html' } });
+    return { status: r.status, html: (await r.text()).includes('<div id="root"') };
+  });
+  expect(doc).toEqual({ status: 200, html: true });
   await context.setOffline(false);
 });
 

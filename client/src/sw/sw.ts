@@ -80,16 +80,21 @@ self.addEventListener('fetch', (e) => {
     return;
   }
   if (p === '/healthz' || p === '/sw.js') return;
-  if (req.mode === 'navigate' && (!HAS_EXT.test(p) || APP_PATH_WITH_DOT.test(p))) {
+  // Pages: real navigations, but also document requests that arrive with another mode
+  // (Chrome's installability/offline check, prefetch) – they all get the shell, never a network error.
+  if (isDocument(req) && (!HAS_EXT.test(p) || APP_PATH_WITH_DOT.test(p))) {
     e.respondWith(shellFirst(req));
     return;
   }
   if (p.startsWith('/assets/') || p.startsWith('/icons/') || PRECACHE.has(p)) {
     e.respondWith(cacheFirst(req, p.startsWith('/assets/') || p.startsWith('/icons/')));
-    return;
   }
-  e.respondWith(networkFirst(req));
+  // Everything else isn't cached by us: leave it to the browser instead of re-throwing its network errors.
 });
+
+function isDocument(req: Request): boolean {
+  return req.mode === 'navigate' || req.destination === 'document' || (req.headers.get('accept') ?? '').includes('text/html');
+}
 
 /** Navigations: the versioned shell from the cache (instant + offline), network as fallback. */
 async function shellFirst(req: Request): Promise<Response> {
@@ -106,7 +111,12 @@ async function shellFirst(req: Request): Promise<Response> {
 async function cacheFirst(req: Request, store: boolean): Promise<Response> {
   const hit = await caches.match(req, { ignoreSearch: true });
   if (hit) return hit;
-  const res = await fetch(req);
+  let res: Response;
+  try {
+    res = await fetch(req);
+  } catch {
+    return Response.error(); // offline and not cached: same outcome, without an uncaught rejection in the SW
+  }
   if (store && res.ok) {
     const copy = res.clone();
     void caches.open(SHELL).then((c) => c.put(req, copy));
@@ -114,15 +124,6 @@ async function cacheFirst(req: Request, store: boolean): Promise<Response> {
   return res;
 }
 
-async function networkFirst(req: Request): Promise<Response> {
-  try {
-    return await fetch(req);
-  } catch (err) {
-    const hit = await caches.match(req);
-    if (hit) return hit;
-    throw err;
-  }
-}
 
 /** /api/state and /api/games/:id: network with a 4 s timeout, last good answer as offline fallback. */
 async function apiNetworkFirst(req: Request): Promise<Response> {
